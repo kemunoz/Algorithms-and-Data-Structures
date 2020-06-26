@@ -42,7 +42,60 @@ public class LinkedList{
         System.out.println("\n");
     }
     public static LinkedList delete(LinkedList list,int key){
+        Node currNode = list.head, prev = null;
+
+        //Case 1: key is at the head
+        if( currNode.data == key){
+            list.head = currNode.next;
+            return list;
+        }
+
+        //Case 2: Anywhere else
+        while(currNode != null && currNode.data != key){
+            prev = currNode;
+            currNode = currNode.next;
+        }
+
+        //if a key was found currNode !=null
+        if(currNode != null){
+            prev = currNode.next;
+            return list;
+        }
+        //Case 3: key was not present
+        if(currNode == null){
+            System.out.println("Key was not found");
+        }
+        return list;
         
+    }
+
+    public static LinkedList deleteAtPosition(LinkedList list, int position){
+        Node currNode = list.head, prev = null;
+
+        //Case 1: if position is 0
+        if(position == 0){
+            list.head = currNode.next;
+            return list;
+        }
+
+        //Case 2:position is anywhere else
+        int counter = 0;
+        while(currNode != null && counter != position){
+            prev = currNode;
+            currNode = currNode.next;
+            counter++;
+        }
+
+        //position was found, currNode should not be null
+        if(currNode != null){
+            prev.next = currNode.next;
+            return list;
+        }
+        //else position was greater than list size
+        else{
+            System.out.println("Position out of bounds");
+        }
+        return list;
     }
 
 
