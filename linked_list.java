@@ -97,6 +97,34 @@ public class LinkedList{
         }
         return list;
     }
+    public static LinkedList deleteMiddleNode(LinkedList list, Node k){
+        while(k.next != null){
+            k.data = k.next.data;
+            k = k.next;
+        }
+        return list;
+    }
+    public static LinkedList partition(LinkedList list, int part){
+        LinkedList newlist = new LinkedList();
+        Node head = newlist.head;
+        Node tail = newlist.head;
+        Node temp = list.head;
+
+        while(temp != null){
+            if(temp.data < part){
+                Node k = new Node(temp.data);
+                k.next = head;
+                head = k;
+            }
+            else if(temp.data <= part){
+                Node k = new Node(temp.data);
+                tail.next = k;
+                tail = k;
+            }
+        }
+        
+
+    }
 
 
 }
