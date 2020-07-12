@@ -3,26 +3,26 @@ import java.io.*;
 class quicksort{
 
     static void quickSort(int[] array, int left, int right){
-
-        if(left < right){
-            int index = partition(array, left, right);
-            quickSort(array, left, index);
-            quickSort(array, index + 1, right);
+        int index = partition(array, left, right);
+        if(left < index - 1){
+            quickSort(array, left, index -1);
+        }
+        if(index < right){
+            quickSort(array, index, right);
         }
     }
 
     static int partition(int[] array, int left, int right){
         int pivot = array[(left + right)/2];
-        while(left < right){
+        while(left <= right){
             while(array[left] < pivot) left++;
-            while(array[right]>pivot) right--;
-            if(left<=right){
+            while(array[right] > pivot) right--;
+            if(left <= right){
                 swap(array, left, right);
                 left++;
                 right--;
             }
         }
-
         return left;
     }
 
